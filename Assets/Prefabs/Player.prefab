@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4536601596487246}
   - component: {fileID: 212536763265544070}
   - component: {fileID: 60645123783069996}
+  - component: {fileID: 50713052842444006}
+  - component: {fileID: 114294499506687052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35,12 +37,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855728340884066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.007, y: -0.246, z: 0}
+  m_LocalPosition: {x: -0.04, y: -7.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50713052842444006
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855728340884066}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!60 &60645123783069996
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -98,6 +120,18 @@ PolygonCollider2D:
       - {x: 0.305, y: -1.005}
       - {x: 0.31873393, y: -0.8886466}
       - {x: 0.5713556, y: -0.88276315}
+--- !u!114 &114294499506687052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855728340884066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3071b7311750226439decf4ba74c6cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!212 &212536763265544070
 SpriteRenderer:
   m_ObjectHideFlags: 1
