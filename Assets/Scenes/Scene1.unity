@@ -611,7 +611,7 @@ MonoBehaviour:
   bullet: {fileID: 1657004768814894, guid: 6ce716ba0d14a0b40a6d8571de7008c1, type: 2}
   coolDown: 5
   projSpeed: 5
-  spawnDistance: 2
+  spawnDistance: 4.5
 --- !u!1001 &1719283856
 Prefab:
   m_ObjectHideFlags: 0

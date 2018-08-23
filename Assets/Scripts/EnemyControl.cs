@@ -9,7 +9,7 @@ public class EnemyControl : MonoBehaviour
     public GameObject bullet;
     public float coolDown;
     public float projSpeed;
-    public int spawnDistance;
+    public float spawnDistance;
 
 
     // Use this for initialization
@@ -37,9 +37,9 @@ public class EnemyControl : MonoBehaviour
         coolDown -= Time.deltaTime;
         if ( coolDown <= 0)
         {
-            GameObject projectile = (GameObject)Instantiate(bullet, spawnDistance * direction, transform.rotation);
-            Rigidbody2D proj = projectile.GetComponent<Rigidbody2D>();
-            proj.AddForce(direction * projSpeed);
+            Vector3 spawnPoint = Vector3.MoveTowards(transform.position, target.position, spawnDistance);
+            GameObject projectile = (GameObject)Instantiate(bullet, spawnPoint, transform.rotation);
+            projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.forward * projSpeed;
             coolDown = 5;
         }
     }
