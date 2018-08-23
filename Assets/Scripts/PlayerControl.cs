@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour {
 
     public float speed;
+    public float dashSpeed;
+    public float dashDist;
 
     private Rigidbody2D myRigidbody;
+    private bool dashing;
 
     // Use this for initialization
     void Start()
@@ -22,6 +25,7 @@ public class PlayerControl : MonoBehaviour {
          * 
          * 
          * */
+
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1)
         {
             myRigidbody.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), myRigidbody.velocity.y);
@@ -49,11 +53,37 @@ public class PlayerControl : MonoBehaviour {
         mousePos.z = 0f;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePos.x = mousePos.x - objectPos.x;
-        mousePos.y = mousePos.y - objectPos.y;
+        mousePos = mousePos - objectPos;
+
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
 
+
+        /*
+         * Input for dash move
+         * 
+         * 
+         * */
+        if (Input.GetKeyDown("space"))
+        {
+            dash();
+        }
+
     }
+
+    void dash()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 0f;
+
+        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+        mousePos = mousePos - objectPos;
+
+        //myRigidbody.velocity = new Vector2(mousePos.normalized.x * dashSpeed, mousePos.normalized.y * dashSpeed);
+
+        transform.position = Vector3.MoveTowards(transform.position, mousePos, dashDist);
+    }
+
+
 }
