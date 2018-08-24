@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour {
 
     public float speed;
-    public float dashSpeed;
     public float dashDist;
+    public float dashSpeed;
 
     private Rigidbody2D myRigidbody;
     private bool dashing;
@@ -25,7 +25,6 @@ public class PlayerControl : MonoBehaviour {
          * 
          * 
          * */
-
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1)
         {
             myRigidbody.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), myRigidbody.velocity.y);
@@ -67,22 +66,19 @@ public class PlayerControl : MonoBehaviour {
          * */
         if (Input.GetKeyDown("space"))
         {
-            dash();
+            StartCoroutine(Dash(mousePos));
         }
-
     }
 
-    void dash()
+    IEnumerator Dash(Vector3 mousePos)
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 0f;
+        Vector3 target = transform.position + mousePos.normalized * dashDist;
 
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePos = mousePos - objectPos;
-
-        //myRigidbody.velocity = new Vector2(mousePos.normalized.x * dashSpeed, mousePos.normalized.y * dashSpeed);
-
-        transform.position = Vector3.MoveTowards(transform.position, mousePos, dashDist);
+        while (Vector3.Distance(transform.position, target) > 1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, mousePos, dashSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 
 
