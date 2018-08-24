@@ -44,9 +44,8 @@ public class PlayerControl : MonoBehaviour {
         }
 
         /*
+         * Takes mouse location every frame
          * Has point of ship facing mouse at all times
-         * 
-         * 
          * */
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0f;
