@@ -2,15 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour {
+public class Health{
+    int health;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Health(int hp)
+    {
+        health = hp;
+    }
+
+    void setHealth(int hp)
+    {
+        health = hp;
+    }
+
+    int getHealth()
+    {
+        Debug.Log("Current health = " + health);
+        return health;
+    }
+
+    void subtractHealth(int damage)
+    {
+        health -= damage;
+    }
+
+    void addHealth(int plus)
+    {
+        health += plus;
+    }
 }

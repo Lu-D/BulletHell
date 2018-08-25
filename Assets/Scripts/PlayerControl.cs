@@ -8,7 +8,6 @@ public class PlayerControl : MonoBehaviour {
     public float dashDist;
     public float dashSpeed;
     public float rotateSpeed;
-    public Color hitColor;
 
     private Rigidbody2D myRigidbody;
     private Renderer myRenderer;
