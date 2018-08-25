@@ -8,14 +8,17 @@ public class PlayerControl : MonoBehaviour {
     public float dashDist;
     public float dashSpeed;
     public float rotateSpeed;
+    public Color hitColor;
 
     private Rigidbody2D myRigidbody;
+    private Renderer myRenderer;
     private bool dashing;
 
     // Use this for initialization
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myRenderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,7 @@ public class PlayerControl : MonoBehaviour {
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos = mousePos - objectPos;
 
-        Quaternion lookMouse = Quaternion.LookRotation(mousePos, -Vector3.forward);
+        Quaternion lookMouse = Quaternion.LookRotation(mousePos, Vector3.back);
         lookMouse.x = 0;
         lookMouse.y = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, rotateSpeed);
@@ -70,6 +73,15 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Projectile")
+        {
+            Debug.Log("I got hit");
+            StartCoroutine(collideFlash());
+        }
+    }
+
     IEnumerator Dash(Vector3 mousePos)
     {
         Vector3 target = transform.position + mousePos.normalized * dashDist;
@@ -79,6 +91,17 @@ public class PlayerControl : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, mousePos, dashSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    IEnumerator collideFlash()
+    {
+        Material m = this.myRenderer.material;
+        Color32 c = this.myRenderer.material.color;
+        this.myRenderer.material = null;
+        this.myRenderer.material.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        this.myRenderer.material = m;
+        this.myRenderer.material.color = c;
     }
 
 
