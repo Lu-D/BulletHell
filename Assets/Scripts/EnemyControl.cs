@@ -33,17 +33,17 @@ public class EnemyControl : MonoBehaviour
         lookDirection.y = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookDirection, rotationSpeed);
          
-        FireProjectiles();
+        FireProjectiles(relative);
     }
 
-    void FireProjectiles()
+    void FireProjectiles(Vector3 direction)
     {
         coolDown -= Time.deltaTime;
         if ( coolDown <= 0)
         {
             Vector3 spawnPoint = Vector3.MoveTowards(transform.position, target.position, spawnDistance);
             GameObject projectile = (GameObject)Instantiate(bullet, spawnPoint, transform.rotation);
-            projectile.GetComponent<Rigidbody2D>().AddForce(transform.forward.normalized * projSpeed);
+            projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * projSpeed;
             //Rigidbody2D instantiatedProj = projectile.GetComponent<Rigidbody2D>();
             //instantiatedProj.velocity.normalized *= projSpeed;
             coolDown = 5;
