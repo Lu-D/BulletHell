@@ -54,13 +54,10 @@ public class PlayerControl : MonoBehaviour {
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos = mousePos - objectPos;
 
-
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         Quaternion lookMouse = Quaternion.LookRotation(mousePos, -Vector3.forward);
         lookMouse.x = 0;
         lookMouse.y = 0;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, Time.deltaTime * rotateSpeed);
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (angle - 90f) * Time.deltaTime));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, rotateSpeed);
 
         /*
          * Input for dash move
