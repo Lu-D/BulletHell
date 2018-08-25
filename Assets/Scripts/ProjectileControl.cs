@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProjectileControl : MonoBehaviour {
 
-    public float speed;
-
 	void Start () {
 
 	}
@@ -14,4 +12,13 @@ public class ProjectileControl : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Target hit");
+            Destroy(gameObject);
+        }
+    }
 }

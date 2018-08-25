@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212350996920396834}
   - component: {fileID: 58619768351492732}
   - component: {fileID: 50809964978293978}
+  - component: {fileID: 114022953170831570}
   m_Layer: 0
   m_Name: Green Proj
   m_TagString: Projectile
@@ -77,6 +78,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &114022953170831570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163696546615196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d2c51b5ae83ff4696d446b41345c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212350996920396834
 SpriteRenderer:
   m_ObjectHideFlags: 1
