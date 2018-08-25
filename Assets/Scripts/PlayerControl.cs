@@ -93,6 +93,7 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    //flash when damage taken
     IEnumerator collideFlash()
     {
         Material m = this.myRenderer.material;
