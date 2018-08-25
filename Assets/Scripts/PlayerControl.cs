@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour {
     public float speed;
     public float dashDist;
     public float dashSpeed;
+    public float rotateSpeed;
 
     private Rigidbody2D myRigidbody;
     private bool dashing;
@@ -55,8 +56,11 @@ public class PlayerControl : MonoBehaviour {
 
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
-
+        Quaternion lookMouse = Quaternion.LookRotation(mousePos, -Vector3.forward);
+        lookMouse.x = 0;
+        lookMouse.y = 0;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, Time.deltaTime * rotateSpeed);
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (angle - 90f) * Time.deltaTime));
 
         /*
          * Input for dash move
