@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Health{
     private int health;
+    private int healthMax;
 
     public Health(int hp)
     {
         health = hp;
+        healthMax = hp;
     }
 
     public void setHealth(int hp)
@@ -17,7 +19,15 @@ public class Health{
 
     public int getHealth()
     {
-        Debug.Log("Current health = " + health);
+        if(health > healthMax)
+        {
+            health = healthMax;
+        }
+        else if(health < 0)
+        {
+            health = 0;
+        }
+
         return health;
     }
 

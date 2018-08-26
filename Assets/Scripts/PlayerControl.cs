@@ -83,7 +83,8 @@ public class PlayerControl : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Projectile" && !invincible)
         {
-            Debug.Log("I got hit");
+            playerHP.subtractHealth(1);
+            Debug.Log(playerHP.getHealth());
             StartCoroutine(collideFlash(1f));
             StartCoroutine(invinciblePhase(1f));
         }
