@@ -19,6 +19,7 @@ public class ProjectileControl : MonoBehaviour {
         {
             Debug.Log("Target hit");
             Destroy(gameObject);
-        }
+
+        } 
     }
 }

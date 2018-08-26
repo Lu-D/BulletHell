@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58169075931873670}
   - component: {fileID: 50836790468127656}
   - component: {fileID: 114279315825121676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Proj
   m_TagString: Projectile
   m_Icon: {fileID: 0}
