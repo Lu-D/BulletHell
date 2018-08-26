@@ -8,17 +8,21 @@ public class PlayerControl : MonoBehaviour {
     public float dashDist;
     public float dashSpeed;
     public float rotateSpeed;
+    public float dashCD;
     public bool invincible;
 
     private Rigidbody2D myRigidbody;
     private Renderer myRenderer;
     private bool dashing;
+    private Health playerHP;
+    private float timeStamp;
 
     // Use this for initialization
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<Renderer>();
+        playerHP = new Health(5);
         invincible = false;
     }
 
@@ -68,8 +72,9 @@ public class PlayerControl : MonoBehaviour {
          * 
          * 
          * */
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && Time.time > timeStamp + dashCD)
         {
+            timeStamp = Time.time;
             StartCoroutine(Dash(mousePos));
         }
     }
