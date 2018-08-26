@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour {
     public float dashDist;
     public float dashSpeed;
     public float rotateSpeed;
+    public bool invincible;
 
     private Rigidbody2D myRigidbody;
     private Renderer myRenderer;
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour {
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<Renderer>();
+        invincible = false;
     }
 
     // Update is called once per frame
@@ -74,10 +76,11 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Projectile")
+        if(collision.gameObject.tag == "Projectile" && !invincible)
         {
             Debug.Log("I got hit");
-            StartCoroutine(collideFlash());
+            StartCoroutine(collideFlash(1f));
+            StartCoroutine(invinciblePhase(1f));
         }
     }
 
@@ -85,23 +88,37 @@ public class PlayerControl : MonoBehaviour {
     {
         Vector3 target = transform.position + mousePos.normalized * dashDist;
 
+        invincible = true;
+
         while (Vector3.Distance(transform.position, target) > 1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, mousePos, dashSpeed * Time.deltaTime);
             yield return null;
         }
+
+        invincible = false;
     }
 
     //flash when damage taken
-    IEnumerator collideFlash()
+    IEnumerator collideFlash(float greyTimer)
     {
-        Material m = this.myRenderer.material;
-        Color32 c = this.myRenderer.material.color;
-        this.myRenderer.material = null;
-        this.myRenderer.material.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        this.myRenderer.material = m;
-        this.myRenderer.material.color = c;
+            Material m = this.myRenderer.material;
+            Color32 c = this.myRenderer.material.color;
+            this.myRenderer.material = null;
+            this.myRenderer.material.color = Color.white;
+
+            yield return new WaitForSeconds(greyTimer);
+
+            this.myRenderer.material = m;
+            this.myRenderer.material.color = c;
+    }
+
+    //stay invincible for x seconds
+    IEnumerator invinciblePhase(float invincibleTimer)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(invincibleTimer);
+        invincible = false;
     }
 
 
