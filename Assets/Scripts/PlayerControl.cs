@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour {
     public float dashSpeed;
     public float rotateSpeed;
     public float dashCD;
+    public GameObject front;
     public bool invincible;
 
     private Rigidbody2D myRigidbody;
@@ -75,7 +76,7 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKeyDown("space") && Time.time > timeStamp + dashCD)
         {
             timeStamp = Time.time;
-            StartCoroutine(Dash(mousePos));
+            StartCoroutine(Dash());
         }
     }
 
@@ -90,15 +91,15 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    IEnumerator Dash(Vector3 mousePos)
+    IEnumerator Dash()
     {
-        Vector3 target = transform.position + mousePos.normalized * dashDist;
+        Vector3 target = front.transform.position;
 
         invincible = true;
 
-        while (Vector3.Distance(transform.position, target) > 1f)
+        while (Vector3.Distance(transform.position, target) > .1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, mousePos, dashSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, dashSpeed * Time.deltaTime);
             yield return null;
         }
 
