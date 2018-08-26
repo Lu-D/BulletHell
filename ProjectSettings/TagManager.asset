@@ -8,6 +8,7 @@ TagManager:
   - Background
   - Boss
   - Projectile
+  - Border
   layers:
   - Default
   - TransparentFX
