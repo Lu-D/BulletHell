@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BProjectile : MonoBehaviour
 {
+    public float projSpeed;
+    public int damage;
+
     public virtual void Start()
     {
 

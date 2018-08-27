@@ -9,8 +9,8 @@ public class PlayerControl : MonoBehaviour {
     public float dashSpeed;
     public float rotateSpeed;
     public float dashCD;
-    public float projSpeed;
     public float attackCD;
+    public bool invincible;
     public GameObject front;
     public GameObject bullet;
 
@@ -18,8 +18,8 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody2D myRigidbody;
     private Renderer myRenderer;
     private Health playerHP;
+
     private bool dashing;
-    private bool invincible;
     private float timeStamp;
 
     // Use this for initialization
@@ -93,7 +93,7 @@ public class PlayerControl : MonoBehaviour {
         //take damage if hit by projectile and is not invincible, flash for damage and initiate invincibility
         if(collision.gameObject.tag == "Projectile" && !invincible)
         {
-            playerHP.subtractHealth(1);
+            playerHP.subtractHealth(collision.gameObject.GetComponent<BProjectile>().damage);
             Debug.Log(playerHP.getHealth());
             StartCoroutine(collideFlash(1f));
             StartCoroutine(invinciblePhase(1f));
@@ -105,7 +105,7 @@ public class PlayerControl : MonoBehaviour {
     {
         //instantiate bullet and add velocity toward front of player
         GameObject projectile = (GameObject)Instantiate(bullet, (front.transform.position - transform.position).normalized * 1.5f + transform.position, transform.rotation);
-        projectile.GetComponent<Rigidbody2D>().velocity = (front.transform.position - transform.position) * projSpeed;
+        projectile.GetComponent<Rigidbody2D>().velocity = (front.transform.position - transform.position) * projectile.GetComponent<BProjectile>().projSpeed;
     }
 
     //dash towards player front, invincible during dash

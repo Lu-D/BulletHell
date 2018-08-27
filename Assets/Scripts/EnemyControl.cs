@@ -48,7 +48,7 @@ public class EnemyControl : MonoBehaviour
 
             //fire Projectile
             GameObject projectile = (GameObject)Instantiate(bullet, spawnPoint, transform.rotation);
-            projectile.GetComponent<Rigidbody2D>().velocity = (BossFront.position - transform.position) * projSpeed;
+            projectile.GetComponent<Rigidbody2D>().velocity = (BossFront.position - transform.position) * projectile.GetComponent<BProjectile>().projSpeed;
             coolDown = maxCoolDown;
         }
     }
@@ -57,7 +57,7 @@ public class EnemyControl : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player Projectile")
         {
-            health.subtractHealth(1);
+            health.subtractHealth(collision.gameObject.GetComponent<BProjectile>().damage);
             Debug.Log(health.getHealth());
         }
     }
