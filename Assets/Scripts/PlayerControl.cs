@@ -72,17 +72,14 @@ public class PlayerControl : MonoBehaviour {
         lookMouse.y = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, rotateSpeed);
 
-        /*
-         * Input for dash move
-         * 
-         * 
-         * */
+        //dash input
         if (Input.GetKeyDown("space") && Time.time > timeStamp + dashCD)
         {
             timeStamp = Time.time;
             StartCoroutine(Dash());
         }
 
+        //fire projectile input
         if (Input.GetMouseButton(0) && Time.time > timeStamp + attackCD)
         {
             timeStamp = Time.time;
@@ -90,8 +87,10 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    //collision method
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //take damage if hit by projectile and is not invincible, flash for damage and initiate invincibility
         if(collision.gameObject.tag == "Projectile" && !invincible)
         {
             playerHP.subtractHealth(1);
@@ -101,13 +100,15 @@ public class PlayerControl : MonoBehaviour {
         }
     }
     
+    //fires projectile
     void fireProjectile()
     {
-        //fire Projectile
+        //instantiate bullet and add velocity toward front of player
         GameObject projectile = (GameObject)Instantiate(bullet, (front.transform.position - transform.position).normalized * 1.5f + transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody2D>().velocity = (front.transform.position - transform.position) * projSpeed;
     }
 
+    //dash towards player front, invincible during dash
     IEnumerator Dash()
     {
         Vector3 target = (front.transform.position - transform.position).normalized * dashDist + transform.position;
@@ -126,13 +127,18 @@ public class PlayerControl : MonoBehaviour {
     //flash when damage taken
     IEnumerator collideFlash(float greyTimer)
     {
+            //save initial material and color
             Material m = this.myRenderer.material;
             Color32 c = this.myRenderer.material.color;
+
+            //switch color to grey
             this.myRenderer.material = null;
             this.myRenderer.material.color = Color.white;
-
+            
+            //wait set time
             yield return new WaitForSeconds(greyTimer);
-
+            
+            //return to initial material/color
             this.myRenderer.material = m;
             this.myRenderer.material.color = c;
     }
