@@ -8,6 +8,8 @@ public class EnemyControl : MonoBehaviour
     public Transform BossFront;
     public Transform target;
     public GameObject bullet;
+    public Health health;
+    public int startHealth;
     public float coolDown;
     public float rotationSpeed;
     public float projSpeed;
@@ -18,6 +20,7 @@ public class EnemyControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        health = new Health(startHealth);
         maxCoolDown = coolDown;
     }
 
@@ -47,6 +50,15 @@ public class EnemyControl : MonoBehaviour
             GameObject projectile = (GameObject)Instantiate(bullet, spawnPoint, transform.rotation);
             projectile.GetComponent<Rigidbody2D>().velocity = (BossFront.position - transform.position) * projSpeed;
             coolDown = maxCoolDown;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player Projectile")
+        {
+            health.subtractHealth(1);
+            Debug.Log(health.getHealth());
         }
     }
 }

@@ -9,13 +9,17 @@ public class PlayerControl : MonoBehaviour {
     public float dashSpeed;
     public float rotateSpeed;
     public float dashCD;
+    public float projSpeed;
+    public float attackCD;
     public GameObject front;
-    public bool invincible;
+    public GameObject bullet;
+
 
     private Rigidbody2D myRigidbody;
     private Renderer myRenderer;
-    private bool dashing;
     private Health playerHP;
+    private bool dashing;
+    private bool invincible;
     private float timeStamp;
 
     // Use this for initialization
@@ -78,6 +82,12 @@ public class PlayerControl : MonoBehaviour {
             timeStamp = Time.time;
             StartCoroutine(Dash());
         }
+
+        if (Input.GetMouseButton(0) && Time.time > timeStamp + attackCD)
+        {
+            timeStamp = Time.time;
+            fireProjectile();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,10 +100,17 @@ public class PlayerControl : MonoBehaviour {
             StartCoroutine(invinciblePhase(1f));
         }
     }
+    
+    void fireProjectile()
+    {
+        //fire Projectile
+        GameObject projectile = (GameObject)Instantiate(bullet, (front.transform.position - transform.position).normalized * 1.5f + transform.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().velocity = (front.transform.position - transform.position) * projSpeed;
+    }
 
     IEnumerator Dash()
     {
-        Vector3 target = front.transform.position;
+        Vector3 target = (front.transform.position - transform.position).normalized * dashDist + transform.position;
 
         invincible = true;
 
