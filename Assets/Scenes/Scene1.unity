@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1488928478108046, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
       propertyPath: m_TagString
-      value: Boss
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 727478128}
   m_Layer: 8
   m_Name: BossFront
-  m_TagString: Boss
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,7 +494,7 @@ Prefab:
     - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
         type: 2}
       propertyPath: dashDist
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
         type: 2}
@@ -531,6 +531,22 @@ Prefab:
       propertyPath: front
       value: 
       objectReference: {fileID: 749670936}
+    - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1163696546615196, guid: 40664591236f2ec4cbdceb537c7426bc,
+        type: 2}
+    - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
+        type: 2}
+      propertyPath: projSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
+        type: 2}
+      propertyPath: attackCD
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8050dc1b75756154aaf85aace3c1ae41, type: 2}
   m_IsPrefabAsset: 0
@@ -736,6 +752,7 @@ MonoBehaviour:
   BossFront: {fileID: 727478128}
   target: {fileID: 1485577174}
   bullet: {fileID: 1657004768814894, guid: 6ce716ba0d14a0b40a6d8571de7008c1, type: 2}
+  startHealth: 100
   coolDown: 0.2
   rotationSpeed: 0.75
   projSpeed: 1
