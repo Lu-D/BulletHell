@@ -77,6 +77,7 @@ public class PlayerControl : MonoBehaviour {
         {
             timeStamp = Time.time;
             StartCoroutine(Dash());
+            StartCoroutine(invinciblePhase(.3f));
         }
 
         //fire projectile input
@@ -121,7 +122,6 @@ public class PlayerControl : MonoBehaviour {
             yield return null;
         }
 
-        invincible = false;
     }
 
     //flash when damage taken
