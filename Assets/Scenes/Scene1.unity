@@ -812,6 +812,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5012623d672a1c4f93073ea85b9e5b2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1478799799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1883580983760588, guid: 2369ab8763c14504bb039ffe53202bad,
+    type: 2}
+  m_PrefabInternal: {fileID: 803517556}
 --- !u!4 &1485577174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4536601596487246, guid: 8050dc1b75756154aaf85aace3c1ae41,
@@ -886,7 +891,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossFront: {fileID: 727478128}
   target: {fileID: 1485577174}
+  gun: {fileID: 1478799799}
+  bullet: {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385, type: 2}
   startHealth: 100
+  coolDown: 13
   rotationSpeed: 0.75
 --- !u!1001 &1719283856
 Prefab:

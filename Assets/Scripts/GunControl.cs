@@ -21,16 +21,13 @@ public class GunControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Fire(bullet, 90); //FOR TEST PURPOSES ONLY
-        Fire(bullet, -90);
-        Fire(bullet, 0);
+        //Fire(bullet, 90); //FOR TEST PURPOSES ONLY
+        //Fire(bullet, -90);
+        //Fire(bullet, 0);
 	}
 
-    void Fire(GameObject proj, float angle)
+    public void Fire(GameObject proj, float angle)
     {
-        coolDown -= Time.deltaTime;
-        if (coolDown <= 0)
-        {
             transform.Rotate(0, 0, angle, Space.Self);
             //fire Projectile
             GameObject projectile = (GameObject)Instantiate(bullet, gunFront.position, boss.rotation);
@@ -40,6 +37,6 @@ public class GunControl : MonoBehaviour {
             //Debug.Log(gunFront.position - gunBack.position);
             //Debug.Log(projectile.GetComponent<BProjectile>().projSpeed); 
             transform.Rotate(0, 0, -angle, Space.Self);
-        }
+        
     }
 }

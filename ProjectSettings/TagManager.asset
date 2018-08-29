@@ -10,6 +10,7 @@ TagManager:
   - Border
   - Player Projectile
   - Enemy
+  - Load
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,6 @@ public class Health{
         {
             health = 0;
         }
-
         return health;
     }
 
