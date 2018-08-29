@@ -158,7 +158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1488928478108046, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727478128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BossFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,20 +476,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1883580983760588, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1821783073659860, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1571732007222026, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114337844504533354, guid: 2369ab8763c14504bb039ffe53202bad,
         type: 2}
       propertyPath: coolDown
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114337844504533354, guid: 2369ab8763c14504bb039ffe53202bad,
         type: 2}
@@ -502,6 +502,18 @@ Prefab:
       value: 
       objectReference: {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385,
         type: 2}
+    - target: {fileID: 1883580983760588, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571732007222026, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821783073659860, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
   m_IsPrefabAsset: 0

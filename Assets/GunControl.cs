@@ -5,8 +5,8 @@ using UnityEngine;
 public class GunControl : MonoBehaviour {
     private Transform gunBack;
     private Transform gunFront;
+    private Transform boss;
     public float coolDown;
-    private float projSpeed = 1;
     private float maxCoolDown;
     public GameObject bullet;
 
@@ -15,6 +15,7 @@ public class GunControl : MonoBehaviour {
     void Start () {
         gunBack = this.gameObject.transform.GetChild(0);
         gunFront = this.gameObject.transform.GetChild(1);
+        boss = this.gameObject.transform.parent;
         maxCoolDown = coolDown;
     }
 	
@@ -29,9 +30,12 @@ public class GunControl : MonoBehaviour {
         if (coolDown <= 0)
         {
             //fire Projectile
-            GameObject projectile = (GameObject)Instantiate(bullet, gunFront.position, transform.rotation);
+            GameObject projectile = (GameObject)Instantiate(bullet, gunFront.position, boss.rotation);
             projectile.GetComponent<Rigidbody2D>().velocity = (gunFront.position - gunBack.position) * projectile.GetComponent<BProjectile>().projSpeed;
             coolDown = maxCoolDown;
+            //Debug.Log(projectile.GetComponent<Rigidbody2D>().velocity);
+            Debug.Log(gunFront.position - gunBack.position);
+            //Debug.Log(projectile.GetComponent<BProjectile>().projSpeed); 
         }
     }
 }
