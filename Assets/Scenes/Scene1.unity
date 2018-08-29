@@ -158,7 +158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1488928478108046, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f35cc58797347b44b07c3a057efd4f5, type: 2}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727478128}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BossFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,15 +476,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1883580983760588, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1821783073659860, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571732007222026, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114337844504533354, guid: 2369ab8763c14504bb039ffe53202bad,
         type: 2}
@@ -496,6 +496,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114337844504533354, guid: 2369ab8763c14504bb039ffe53202bad,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2369ab8763c14504bb039ffe53202bad, type: 2}
   m_IsPrefabAsset: 0
@@ -652,7 +658,7 @@ Prefab:
         type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 1163696546615196, guid: 40664591236f2ec4cbdceb537c7426bc,
+      objectReference: {fileID: 1163696546615196, guid: d825e54e89a795e438b57d7361b3d379,
         type: 2}
     - target: {fileID: 114294499506687052, guid: 8050dc1b75756154aaf85aace3c1ae41,
         type: 2}
@@ -966,3 +972,64 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0392707d7e678547bc9020d8c7dd98c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2022973370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022973372}
+  - component: {fileID: 2022973371}
+  - component: {fileID: 2022973373}
+  m_Layer: 0
+  m_Name: Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2022973371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2022973370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abb8684640981945bf0096cf45dd24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectiles:
+  - {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385, type: 2}
+  - {fileID: 1163696546615196, guid: d825e54e89a795e438b57d7361b3d379, type: 2}
+  - {fileID: 1232752573515322, guid: c532dd520e0d083438081f197916793f, type: 2}
+--- !u!4 &2022973372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2022973370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.61, y: -4.91, z: -0.11978402}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022973373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2022973370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f850c0752473b44a8e1d441cccbd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectiles:
+  - {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385, type: 2}
+  - {fileID: 1163696546615196, guid: d825e54e89a795e438b57d7361b3d379, type: 2}
+  - {fileID: 1232752573515322, guid: c532dd520e0d083438081f197916793f, type: 2}
+  enemy: []

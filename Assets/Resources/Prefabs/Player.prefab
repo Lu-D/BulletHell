@@ -132,6 +132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dashDist: 0
+  dashSpeed: 0
+  rotateSpeed: 0
+  dashCD: 0
+  attackCD: 0
+  invincible: 0
+  front: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!212 &212536763265544070
 SpriteRenderer:
   m_ObjectHideFlags: 1

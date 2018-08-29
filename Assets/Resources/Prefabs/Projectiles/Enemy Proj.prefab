@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4244777903680082}
   - component: {fileID: 212880962929885096}
+  - component: {fileID: 58169075931873670}
   - component: {fileID: 50836790468127656}
   - component: {fileID: 114493310502943942}
-  - component: {fileID: 58316816812177306}
   m_Layer: 9
   m_Name: Enemy Proj
   m_TagString: Projectile
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58316816812177306
+--- !u!58 &58169075931873670
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0110508d077b7eb42a450e08a145d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projSpeed: 1
+  projSpeed: 5
   damage: 1
 --- !u!212 &212880962929885096
 SpriteRenderer:
