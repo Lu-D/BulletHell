@@ -891,11 +891,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossFront: {fileID: 727478128}
   target: {fileID: 1485577174}
+  startHealth: 100
+  coolDown: 2
+  rotationSpeed: 2
   gun: {fileID: 1478799799}
   bullet: {fileID: 1657004768814894, guid: bc180f89e2429364a8ff6a9d981e5385, type: 2}
-  startHealth: 100
-  coolDown: 13
-  rotationSpeed: 0.75
 --- !u!1001 &1719283856
 Prefab:
   m_ObjectHideFlags: 0
@@ -1030,6 +1030,10 @@ Prefab:
     - target: {fileID: 4844251558598278, guid: 39a2acbbb62fe944fbfcda06eddb7356, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683493155314594, guid: 39a2acbbb62fe944fbfcda06eddb7356, type: 2}
+      propertyPath: m_TagString
+      value: Load
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39a2acbbb62fe944fbfcda06eddb7356, type: 2}

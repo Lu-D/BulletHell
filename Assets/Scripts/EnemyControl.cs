@@ -7,16 +7,19 @@ public class EnemyControl : MonoBehaviour
 
     public Transform BossFront;
     public Transform target;
-    public GameObject gun;
-    public GameObject bullet;
     public Health health;
     public int startHealth;
     public float coolDown;
     public float rotationSpeed;
+    public GameObject gun;
+    public GameObject bullet;
     //public float projSpeed;
     //public float spawnDistance;
+
     private float maxCoolDown;
     private AttackPatterns attackPatterns;
+    private IEnumerator attackCoroutine;
+
 
     // Use this for initialization
     void Start()
@@ -24,6 +27,9 @@ public class EnemyControl : MonoBehaviour
         attackPatterns = new AttackPatterns();
         health = new Health(startHealth);
         maxCoolDown = coolDown;
+
+        gun = this.transform.Find("Gun").transform.gameObject;
+        bullet = GameObject.FindGameObjectWithTag("Load").GetComponent<LoadList>().projectiles[0];
     }
 
     // Update is called once per frame
@@ -39,16 +45,36 @@ public class EnemyControl : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookDirection, rotationSpeed);
 
 
-        FireProjectiles();
+        //if (!attackPatterns.getIsAttacking())
+        //{
+            attackStates();
+            StartCoroutine(attackCoroutine);
+        //}
     }
 
-    void FireProjectiles()
+    //void FireProjectiles()
+    //{
+    //    coolDown -= Time.deltaTime;
+    //    if (coolDown <= 0)
+    //    {
+            
+    //        StartCoroutine(attackPatterns.shootStraight(gun, bullet, 5));
+    //        //attackPatterns.shootStraight(gun, bullet);
+
+    //        coolDown = maxCoolDown;
+    //    }
+    //}
+
+    void attackStates()
     {
-        coolDown -= Time.deltaTime;
-        if (coolDown <= 0)
+        int randomState = Random.Range(0, 2);
+        if (randomState == 0)
         {
-            StartCoroutine(attackPatterns.WaveFire(gun, bullet));
-            coolDown = maxCoolDown;
+            attackCoroutine = attackPatterns.shootThree(gun, bullet, 5, 2);
+        }
+        else
+        {
+            attackCoroutine = attackPatterns.shootStraight(gun, bullet, 5, 2);
         }
     }
 
