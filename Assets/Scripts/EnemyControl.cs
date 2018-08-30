@@ -45,11 +45,11 @@ public class EnemyControl : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookDirection, rotationSpeed);
 
 
-        //if (!attackPatterns.getIsAttacking())
-        //{
+        if (!attackPatterns.getIsAttacking())
+        {
             attackStates();
             StartCoroutine(attackCoroutine);
-        //}
+        }
     }
 
     //void FireProjectiles()
