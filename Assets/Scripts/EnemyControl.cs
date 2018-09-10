@@ -19,6 +19,7 @@ public class EnemyControl : MonoBehaviour
     private float maxCoolDown;
     private AttackPatterns attackPatterns;
     private IEnumerator attackCoroutine;
+    private int randomState;
 
 
     // Use this for initialization
@@ -30,6 +31,8 @@ public class EnemyControl : MonoBehaviour
 
         gun = this.transform.Find("Gun").transform.gameObject;
         bullet = GameObject.FindGameObjectWithTag("Load").GetComponent<LoadList>().projectiles[0];
+
+        randomState = 0;
     }
 
     // Update is called once per frame
@@ -67,14 +70,23 @@ public class EnemyControl : MonoBehaviour
 
     void attackStates()
     {
-        int randomState = Random.Range(0, 2);
         if (randomState == 0)
         {
-            attackCoroutine = attackPatterns.shootThree(gun, bullet, 5, 2);
+            attackCoroutine = attackPatterns.shootgun(gun, bullet, 5, 2);
         }
-        else
+        else if (randomState == 1)
         {
             attackCoroutine = attackPatterns.shootStraight(gun, bullet, 5, 2);
+        }
+        else if (randomState == 2)
+        {
+            attackCoroutine = attackPatterns.shootWave(gun, bullet, 1, 2);
+        }
+
+        randomState++;
+        if(randomState > 2)
+        {
+            randomState = 0;
         }
     }
 

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class AttackPatterns 
 {
-    private AttackPieces attackPieces;
     private bool isAttacking;
 
     public AttackPatterns()
     {
-        attackPieces = new AttackPieces();
         isAttacking = false;
     }
 
@@ -20,14 +18,15 @@ public class AttackPatterns
     //    yield return attackPieces.shootLine(gun, bullet, 10, -60);
     //}
 
-    public IEnumerator shootThree(GameObject gun, GameObject bullet, int bulletNum, float CD)
+    public IEnumerator shootgun(GameObject gun, GameObject bullet, int bulletNum, float CD)
     {
         isAttacking = true;
         for (int i = 1; i <= bulletNum; ++i)
         {
-            gun.GetComponent<GunControl>().Fire(bullet, 0); 
-            gun.GetComponent<GunControl>().Fire(bullet, 60);
-            gun.GetComponent<GunControl>().Fire(bullet, -60);
+            for(int j = -40; j <= 40; j += 5)
+            {
+                gun.GetComponent<GunControl>().Fire(bullet, j);
+            }
             yield return new WaitForSeconds(.2f);
         }
         yield return new WaitForSeconds(CD);
@@ -40,6 +39,31 @@ public class AttackPatterns
         for (int i = 1; i <= bulletNum; ++i)
         {
             gun.GetComponent<GunControl>().Fire(bullet, 0);
+            yield return new WaitForSeconds(.2f);
+        }
+        yield return new WaitForSeconds(CD);
+        isAttacking = false;
+    }
+
+    public IEnumerator shootWave(GameObject gun, GameObject bullet, int bulletNum, float CD)
+    {
+        isAttacking = true;
+        for (int i = 1; i <= bulletNum; ++i)
+        {
+            for (int j = -40; j <= 40; j += 5)
+            {
+                gun.GetComponent<GunControl>().Fire(bullet, j);
+                yield return new WaitForSeconds(.03f);
+            }
+
+            gun.GetComponent<GunControl>().Fire(bullet, 45);
+            yield return new WaitForSeconds(.1f);
+
+            for (int j = 40; j >= -40; j -= 5)
+            {
+                gun.GetComponent<GunControl>().Fire(bullet, j);
+                yield return new WaitForSeconds(.03f);
+            }
             yield return new WaitForSeconds(.2f);
         }
         yield return new WaitForSeconds(CD);
