@@ -2,18 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Stores Projectile and Enemy game objects
 public class LoadList : MonoBehaviour{
 
     public GameObject[] projectiles;
     public GameObject[] enemy;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

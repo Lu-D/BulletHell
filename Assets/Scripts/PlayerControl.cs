@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour {
     private bool dashing;
     private float timeStamp;
 
-    // Use this for initialization
+    // Intialize fields
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -34,11 +34,7 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*
-         * Basic movement, takes input axis to set constant velocity in 1 direction
-         * 
-         * 
-         * */
+        //X and Y movement controls for player
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1)
         {
             myRigidbody.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), myRigidbody.velocity.y);
@@ -57,10 +53,7 @@ public class PlayerControl : MonoBehaviour {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 0);
         }
 
-        /*
-         * Takes mouse location every frame
-         * Has point of ship facing mouse at all times
-         * */
+        //Takes mouse position and points player towards location
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0f;
 
@@ -72,7 +65,7 @@ public class PlayerControl : MonoBehaviour {
         lookMouse.y = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookMouse, rotateSpeed);
 
-        //dash input
+        //Takes dash input
         if (Input.GetKeyDown("space") && Time.time > timeStamp + dashCD)
         {
             timeStamp = Time.time;
@@ -80,7 +73,7 @@ public class PlayerControl : MonoBehaviour {
             StartCoroutine(invinciblePhase(.3f));
         }
 
-        //fire projectile input
+        //Takes projectile input
         if (Input.GetMouseButton(0) && Time.time > timeStamp + attackCD)
         {
             timeStamp = Time.time;
@@ -101,7 +94,8 @@ public class PlayerControl : MonoBehaviour {
         }
     }
     
-    //fires projectile
+    //fireProjectile()
+    //fires projectile towards player foward
     void fireProjectile()
     {
         //instantiate bullet and add velocity toward front of player
@@ -109,7 +103,8 @@ public class PlayerControl : MonoBehaviour {
         projectile.GetComponent<Rigidbody2D>().velocity = (front.transform.position - transform.position) * projectile.GetComponent<BProjectile>().projSpeed;
     }
 
-    //dash towards player front, invincible during dash
+    //Dash()
+    //dash towards player front and invincible during dash
     IEnumerator Dash()
     {
         Vector3 target = (front.transform.position - transform.position).normalized * dashDist + transform.position;
@@ -124,7 +119,9 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
+    //collideFlash()
     //flash when damage taken
+    //return IEnumerator coroutine
     IEnumerator collideFlash(float greyTimer)
     {
             //save initial material and color
@@ -143,7 +140,9 @@ public class PlayerControl : MonoBehaviour {
             this.myRenderer.material.color = c;
     }
 
-    //stay invincible for x seconds
+    //invinciblePhase()
+    //Switches on and off invincible bool after x seconds
+    //return IEnumerator coroutine
     IEnumerator invinciblePhase(float invincibleTimer)
     {
         invincible = true;

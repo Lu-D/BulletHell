@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Health class that keeps track of health
 public class Health{
     private int health;
     private int healthMax;

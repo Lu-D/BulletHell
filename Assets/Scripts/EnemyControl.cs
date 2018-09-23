@@ -16,18 +16,16 @@ public class EnemyControl : MonoBehaviour
     //public float projSpeed;
     //public float spawnDistance;
 
-    private float maxCoolDown;
     private AttackPatterns attackPatterns;
     private IEnumerator attackCoroutine;
     private int randomState;
 
 
-    // Use this for initialization
+    //Initialize fields
     void Start()
     {
         attackPatterns = new AttackPatterns();
         health = new Health(startHealth);
-        maxCoolDown = coolDown;
 
         gun = this.transform.Find("Gun").transform.gameObject;
         bullet = GameObject.FindGameObjectWithTag("Load").GetComponent<LoadList>().projectiles[0];
@@ -35,9 +33,11 @@ public class EnemyControl : MonoBehaviour
         randomState = 0;
     }
 
-    // Update is called once per frame
+    // Execute every frame
     void Update()
     {
+
+        //Set to look at player
         Vector3 relative = target.position;
         relative.x -= transform.position.x;
         relative.y -= transform.position.y;
@@ -47,7 +47,7 @@ public class EnemyControl : MonoBehaviour
         lookDirection.y = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookDirection, rotationSpeed);
 
-
+        //Ensures only one instance of coroutine is running and attack states are switched
         if (!attackPatterns.getIsAttacking())
         {
             attackStates();
@@ -55,19 +55,8 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    //void FireProjectiles()
-    //{
-    //    coolDown -= Time.deltaTime;
-    //    if (coolDown <= 0)
-    //    {
-            
-    //        StartCoroutine(attackPatterns.shootStraight(gun, bullet, 5));
-    //        //attackPatterns.shootStraight(gun, bullet);
-
-    //        coolDown = maxCoolDown;
-    //    }
-    //}
-
+    //attackStates()
+    //Loops attack states and switches out attackCoroutine
     void attackStates()
     {
         if (randomState == 0)
@@ -90,8 +79,10 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    //collision method
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Lose health when colliding with player projectile
         if(collision.gameObject.tag == "Player Projectile")
         {
             health.subtractHealth(collision.gameObject.GetComponent<BProjectile>().damage);
